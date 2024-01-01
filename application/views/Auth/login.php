@@ -1,6 +1,6 @@
 <!-- Content -->
 <div class="mb-md-5 mt-md-4 pb-2">
-    <h2 class="font_poppins fw-bold mb-2 text-uppercase">Login</h2>
+    <h2 class="font_poppins fw-bold mb-2 text-uppercase">KIAP</h2>
     <p class="text-black mb-5">Masukkan NIK dan Password anda</p>
 
 

@@ -14,6 +14,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            <?= $this->session->flashdata('pesan'); ?>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -44,7 +45,7 @@
                                 } else if ($key['jenis_kelamin'] == 'P') {
                                     echo 'Perempuan';
                                 } else {
-                                    echo '';
+                                    echo '--';
                                 };
                                 ?></td>
                             <td>
@@ -53,9 +54,9 @@
                                     <button class="btn btn-sm btn-info btn-circle" data-bs-toggle="modal" data-bs-target="#editModal<?= $key['id_petugas']; ?>">
                                         <i class="fas fa-info"></i></button>
                                     <!-- btn delete -->
-                                    <a href="<?= base_url() ?>dashboard/people/hapus_petugas/<?= $key['id_petugas'] ?>" class="btn btn-sm btn-danger btn-circle">
+                                    <button class="btn btn-sm btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#hapusModal<?= $key['id_petugas'] ?>">
                                         <i class="fas fa-trash"></i>
-                                    </a>
+                                    </button>
                                 </center>
                             </td>
                         </tr>
@@ -65,12 +66,14 @@
         <!-- /.card-body -->
     </div>
 
+
+    <!-- Modal edit-->
     <?php
     $id = 0;
     foreach ($data_petugas as $row) : $id++;
     ?>
 
-        <!-- Modal -->
+
         <div class="modal fade" id="editModal<?= $row['id_petugas']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -132,65 +135,95 @@
     <?php endforeach; ?>
 
     <!-- end Modal edit-->
-    <!-- modal tambah -->
 
-    <div class="modal fade bd-example-modal-lg" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Petugas</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <!-- modal content-->
-                <div class="modal-body">
-                    <?= form_open_multipart('dashboard/people/proses_tambah_petugas'); ?>
-
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" placeholder="Masukkan Username" class="form-control">
+    <!-- Modal Hapus  -->
+    <?php
+    $id = 1;
+    foreach ($data_petugas as $row) : $id++;
+    ?>
+        <div class="modal fade" id="hapusModal<?= $row['id_petugas']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
                     </div>
-
-                    <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" value="<?= $ibu['id_petugas'] ?>">
+                        Anda yakin ingin menghapus data ini?
+                        Tindakan ini tidak dapat dibatalkan, pastikan Anda telah mempertimbangkan dengan cermat sebelum melanjutkan.
                     </div>
-
-                    <div class="form-group">
-                        <label for="alamat">Alamat</label>
-                        <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="no_telp">No.telp</label>
-                        <input type="text" name="no_telp" placeholder="Masukkan No.Telp" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="text" name="password" placeholder="Masukkan password" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <select name="jenis_kelamin" id="" class="form-control">
-                            <option class="form-control" value="">--jenis_kelamin--</option>
-                            <option value="L">Laki-Laki</option>
-                            <option value="P">Perempuan</option>
-                        </select>
-                    </div>
-
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger" href="<?= base_url() ?>dashboard/people/hapus_petugas/<?= $key['id_petugas'] ?>">Hapus</a>
                     </div>
-                    <?= form_close(); ?>
-
                 </div>
-                <!-- end modal content-->
-
             </div>
         </div>
+</div>
+<?php endforeach; ?>
+<!-- end Modal Hapus -->
+
+<!-- modal tambah -->
+
+<div class="modal fade bd-example-modal-lg" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Petugas</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- modal content-->
+            <div class="modal-body">
+                <?= form_open_multipart('dashboard/people/proses_tambah_petugas'); ?>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="Masukkan Username" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="no_telp">No.telp</label>
+                    <input type="text" name="no_telp" placeholder="Masukkan No.Telp" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" name="password" placeholder="Masukkan password" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" id="" class="form-control">
+                        <option class="form-control" value="">--jenis_kelamin--</option>
+                        <option value="L">Laki-Laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                <?= form_close(); ?>
+
+            </div>
+            <!-- end modal content-->
+
+        </div>
     </div>
+</div>
 
 
 </div>

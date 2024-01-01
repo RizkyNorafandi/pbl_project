@@ -8,10 +8,13 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
+
+
             <h6 class="m-0 font-weight-bold text-primary"><?= $title ?>
                 <button type="button" class="btn btn-primary btn-sm float-right" data-bs-toggle="modal" data-bs-target="#modalTambah">Tambah Data</button>
         </div>
         <div class="card-body">
+            <?= $this->session->flashdata('pesan'); ?>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="example1" cellspacing="0">
                     <thead>
@@ -42,11 +45,11 @@
                                         <!-- btn info -->
                                         <button class="btn btn-sm btn-info btn-circle" data-bs-toggle="modal" data-bs-target="#editModal<?= $key['nik_ibu']; ?>">
                                             <i class="fas fa-info"></i>
-
                                         </button>
-                                        <a href="<?= base_url() ?>dashboard/people/hapus_i_data/<?= $key['nik_ibu'] ?>" class="btn btn-sm btn-danger btn-circle">
+                                        <!-- btn hapus -->
+                                        <button class="btn btn-sm btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#hapusModal<?= $key['nik_ibu']; ?>">
                                             <i class="fas fa-trash"></i>
-                                        </a>
+                                        </button>
                                     </center>
                                 </td>
                             </tr>
@@ -63,12 +66,12 @@
     foreach ($data_ibu as $ibu) : $id++;
     ?>
 
-        <!-- Modal -->
+        <!-- Modal edit-->
         <div class="modal fade" id="editModal<?= $ibu['nik_ibu']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit Data</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -107,9 +110,37 @@
 
     <?php endforeach; ?>
 
-    <!-- Modal edit-->
+
 
     <!-- end Modal edit-->
+
+    <!-- Modal Hapus  -->
+    <?php
+    $id = 1;
+    foreach ($data_ibu as $ibu) : $id++;
+    ?>
+        <div class="modal fade" id="hapusModal<?= $ibu['nik_ibu']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="nik" value="<?= $ibu['nik_ibu'] ?>">
+                        Anda yakin ingin menghapus data ini?
+                        Tindakan ini tidak dapat dibatalkan, pastikan Anda telah mempertimbangkan dengan cermat sebelum melanjutkan.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger" href="<?= base_url() ?>dashboard/people/hapus_i_data/<?= $ibu['nik_ibu'] ?>">Hapus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <!-- end Modal Hapus -->
 
     <!-- Modal Tambah data -->
     <div class="modal fade bd-example-modal-lg" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -122,11 +153,12 @@
 
                 <!-- modal content-->
                 <div class="modal-body">
+
                     <?= form_open_multipart('dashboard/people/proses_tambah_ibu'); ?>
 
                     <div class="form-group">
                         <label for="nik">NIK</label>
-                        <input type="text" name="nik" placeholder="Masukkan NIK" class="form-control">
+                        <input type="text" name="nik" placeholder="Masukkan NIK" class="form-control" required>
                     </div>
 
                     <div class="form-group">
@@ -161,6 +193,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 

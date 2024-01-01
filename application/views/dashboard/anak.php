@@ -12,6 +12,7 @@
                 <button type="button" class="btn btn-primary btn-sm float-right" data-bs-toggle="modal" data-bs-target="#modalTambah">Tambah Data</button>
         </div>
         <div class="card-body">
+            <?= $this->session->flashdata('pesan'); ?>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="example1" cellspacing="0">
                     <thead>
@@ -43,8 +44,10 @@
                                 <td><?= $key['bb_lahir']; ?> Kg</td>
                                 <td><?php if ($key['jenis_kelamin'] == 'L') {
                                         echo 'Laki-Laki';
-                                    } else {
+                                    } else if ($key['jenis_kelamin'] == 'P') {
                                         echo 'Perempuan';
+                                    } else {
+                                        echo '--';
                                     };
                                     ?></td>
                                 <td><?= $key['lingkar_kepala']; ?></td>
@@ -53,11 +56,11 @@
                                         <!-- btn info -->
                                         <button class="btn btn-sm btn-info btn-circle" data-bs-toggle="modal" data-bs-target="#editModal<?= $key['nik_anak']; ?>">
                                             <i class="fas fa-info"></i>
-
+                                            <!-- btn hapus -->
+                                            <button class="btn btn-sm btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#hapusModal<?= $key['nik_anak']; ?>">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
                                         </button>
-                                        <a href="<?= base_url() ?>dashboard/people/hapus_i_data/<?= $key['nik_anak'] ?>" class="btn btn-sm btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
                                     </center>
                                 </td>
                             </tr>
@@ -74,21 +77,18 @@
     foreach ($data_anak as $anak) : $id++;
     ?>
 
-        <!-- Modal -->
+        <!-- Modal edit-->
         <div class="modal fade" id="editModal<?= $anak['nik_anak']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit Data</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="<?= base_url('dashboard/people/edit_anak') ?>" method="post">
 
-                            <div class="form-group">
-                                <label for="nik">NIK</label>
-                                <input type="text" name="nik" placeholder="Masukkan NIK" class="form-control" value="<?= $anak['nik_anak'] ?>">
-                            </div>
+                            <input type="hidden" name="nik" value="<?= $anak['nik_anak'] ?>">
 
                             <div class="form-group">
                                 <label for="nama">Nama</label>
@@ -102,12 +102,12 @@
 
                             <div class="form-group">
                                 <label for="tb_lahir">Tinggi Badan</label>
-                                <input type="text" name="tb_lahir" placeholder="Tinggi Badan" class="form-control">
+                                <input type="text" name="tb_lahir" placeholder="Tinggi Badan" class="form-control" value="<?= $anak['tb_lahir'] ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="bb_lahir">Berat Badan</label>
-                                <input type="text" name="bb_lahir" placeholder="Berat Badan" class="form-control">
+                                <input type="text" name="bb_lahir" placeholder="Berat Badan" class="form-control" value="<?= $anak['bb_lahir'] ?>">
                             </div>
 
                             <div class="form-group">
@@ -121,11 +121,11 @@
 
                             <div class="form-group">
                                 <label for="lingkar_kepala">Lingkar Kepala</label>
-                                <input type="text" name="lingkar_kepala" placeholder="Lingkar Kepala" class="form-control">
+                                <input type="text" name="lingkar_kepala" placeholder="Lingkar Kepala" class="form-control" value="<?= $anak['lingkar_kepala'] ?>">
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
 
                         </form>
@@ -136,9 +136,35 @@
 
     <?php endforeach; ?>
 
-    <!-- Modal edit-->
-
     <!-- end Modal edit-->
+
+    <!-- Modal Hapus  -->
+    <?php
+    $id = 1;
+    foreach ($data_anak as $anak) : $id++;
+    ?>
+        <div class="modal fade" id="hapusModal<?= $anak['nik_anak']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="nik" value="<?= $anak['nik_anak'] ?>">
+                        Anda yakin ingin menghapus data ini?
+                        Tindakan ini tidak dapat dibatalkan, pastikan Anda telah mempertimbangkan dengan cermat sebelum melanjutkan.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger" href="<?= base_url() ?>dashboard/people/hapus_anak/<?= $anak['nik_anak'] ?>">Hapus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <!-- end Modal Hapus -->
 
     <!-- Modal Tambah data -->
     <div class="modal fade bd-example-modal-lg" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -49,6 +49,7 @@
                         <a class="collapse-item" href="<?= base_url('dashboard/People/tb_ibu') ?>">Ibu</a>
                         <a class="collapse-item" href="<?= base_url('dashboard/People/tb_kader') ?>">Petugas</a>
                         <a class="collapse-item" href="<?= base_url('dashboard/People/tb_anak') ?>">Anak</a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/People/tb_dokter') ?>">Dokter</a>
                     </div>
                 </div>
             </li>

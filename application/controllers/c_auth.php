@@ -50,7 +50,6 @@ class c_auth extends CI_Controller
 
 
         $cekIbu = $this->sess->cekUser('ibu', 'nik_ibu', $username);
-        var_dump($cekIbu);
 
 
         if ($cekIbu) {
@@ -68,8 +67,6 @@ class c_auth extends CI_Controller
             }
         } else {
             $cekPetugas = $this->sess->cekUser('petugas', 'username', $username);
-            var_dump($cekPetugas);
-
 
             if ($cekPetugas) {
                 foreach ($cekPetugas as $row) {
@@ -79,7 +76,6 @@ class c_auth extends CI_Controller
                             'username' => $row->username,
                             'nama' => $row->nama_petugas
                         );
-
                         $this->session->set_userdata($dataPetugas);
                         redirect('dashboard/dashboard');
                     }

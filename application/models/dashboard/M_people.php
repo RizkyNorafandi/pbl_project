@@ -106,11 +106,11 @@ class M_people extends CI_Model
     public function proses_tambah_petugas()
     {
         $data = [
-            "nama_petugas" => $this->input->post('nama'),
-            "alamat" => $this->input->post('alamat'),
-            "no_telp" => $this->input->post('no_telp'),
-            "jenis_kelamin" => $this->input->post('jenis_kelamin'),
-            "username" => $this->input->post('username'),
+            "nama_petugas" => htmlspecialchars($this->input->post('nama')),
+            "alamat" => htmlspecialchars($this->input->post('alamat')),
+            "no_telp" => htmlspecialchars($this->input->post('no_telp')),
+            "jenis_kelamin" => htmlspecialchars($this->input->post('jenis_kelamin')),
+            "username" => htmlspecialchars($this->input->post('username')),
             'password' => password_hash(
                 $this->input->post('password'),
                 PASSWORD_DEFAULT
@@ -124,11 +124,11 @@ class M_people extends CI_Model
     {
 
         $update = [
-            'nama_petugas' => $this->input->post('nama'),
-            "alamat" => $this->input->post('alamat'),
-            "no_telp" => $this->input->post('no_telp'),
-            "jenis_kelamin" => $this->input->post('jenis_kelamin'),
-            "username" => $this->input->post('username'),
+            "nama_petugas" => htmlspecialchars($this->input->post('nama')),
+            "alamat" => htmlspecialchars($this->input->post('alamat')),
+            "no_telp" => htmlspecialchars($this->input->post('no_telp')),
+            "jenis_kelamin" => htmlspecialchars($this->input->post('jenis_kelamin')),
+            "username" => htmlspecialchars($this->input->post('username')),
             'password' => password_hash(
                 $this->input->post('password'),
                 PASSWORD_DEFAULT
@@ -149,16 +149,37 @@ class M_people extends CI_Model
     public function proses_tambah_anak()
     {
         $data = [
-            "nik_anak" => $this->input->post('nik'),
-            "nama_anak" => $this->input->post('nama'),
-            "tgl_lahir" => $this->input->post('tgl_lahir'),
-            "tb_lahir" => $this->input->post('tb_lahir'),
-            "bb_lahir" => $this->input->post('bb_lahir'),
-            "jenis_kelamin" => $this->input->post('jenis_kelamin'),
-            "lingkar_kepala" => $this->input->post('lingkar_kepala'),
+            "nik_anak" => htmlspecialchars($this->input->post('nik')),
+            "nama_anak" => htmlspecialchars($this->input->post('nama')),
+            "tgl_lahir" => htmlspecialchars($this->input->post('tgl_lahir')),
+            "tb_lahir" => htmlspecialchars($this->input->post('tb_lahir')),
+            "bb_lahir" => htmlspecialchars($this->input->post('bb_lahir')),
+            "jenis_kelamin" => htmlspecialchars($this->input->post('jenis_kelamin')),
+            "lingkar_kepala" => htmlspecialchars($this->input->post('lingkar_kepala')),
         ];
 
         $this->db->insert('anak', $data);
+    }
+
+    public function edit_anak()
+    {
+        $nik = $this->input->post('nik');
+        $update = [
+            "nama_anak" => htmlspecialchars($this->input->post('nama')),
+            "tgl_lahir" => htmlspecialchars($this->input->post('tgl_lahir')),
+            "tb_lahir" => htmlspecialchars($this->input->post('tb_lahir')),
+            "bb_lahir" => htmlspecialchars($this->input->post('bb_lahir')),
+            "jenis_kelamin" => htmlspecialchars($this->input->post('jenis_kelamin')),
+            "lingkar_kepala" => htmlspecialchars($this->input->post('lingkar_kepala')),
+        ];
+        $this->db->where('nik_anak', $nik);
+        $this->db->update('anak', $update);
+    }
+
+    public function hapus_anak($nik_anak)
+    {
+        $this->db->where('nik_anak', $nik_anak);
+        $this->db->delete('anak');
     }
 }
 

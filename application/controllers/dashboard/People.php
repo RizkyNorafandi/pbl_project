@@ -10,6 +10,7 @@ class People extends CI_Controller
         parent::__construct();
         if ($this->session->userdata('id_petugas') == 0) {
             redirect('c_auth', 'refresh');
+            $this->load->library('form_validation');
         }
         $this->load->model('dashboard/M_people');
     }
@@ -59,47 +60,104 @@ class People extends CI_Controller
         $this->load->view('template/dash_footer.php');
     }
 
+    // CRUD
+
+    //ibu
     public function proses_tambah_ibu()
     {
         $this->M_people->proses_tambah_ibu();
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Ditambahkan! </div>'
+        );
         redirect('dashboard/people/tb_ibu');
     }
 
     public function hapus_i_data($nik_ibu)
     {
         $this->M_people->hapus_i_data($nik_ibu);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Dihapus! </div>'
+        );
         redirect('dashboard/people/tb_ibu');
     }
 
     public function edit_ibu()
     {
         $this->M_people->edit_ibu();
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Diubah! </div>'
+        );
         redirect('dashboard/people/tb_ibu');
     }
+    //end ibu
 
     // petugas
     public function proses_tambah_petugas()
     {
         $this->M_people->proses_tambah_petugas();
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Ditambahkan! </div>'
+        );
         redirect('dashboard/people/tb_kader');
     }
 
     public function edit_petugas()
     {
         $this->M_people->edit_petugas();
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Diubah! </div>'
+        );
         redirect('dashboard/people/tb_kader');
     }
 
     public function hapus_petugas($id_petugas)
     {
         $this->M_people->hapus_petugas($id_petugas);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Dihapus! </div>'
+        );
         redirect('dashboard/people/tb_kader');
     }
+    // end petugas
 
     //anak
     public function proses_tambah_anak()
     {
         $this->M_people->proses_tambah_anak();
+        redirect('dashboard/people/tb_anak');
+    }
+
+    public function edit_anak()
+    {
+        $this->M_people->edit_anak();
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Diubah! </div>'
+        );
+        redirect('dashboard/people/tb_anak');
+    }
+
+    public function hapus_anak($nik_anak)
+    {
+        $this->M_people->hapus_anak($nik_anak);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Dihapus! </div>'
+        );
         redirect('dashboard/people/tb_anak');
     }
 }
