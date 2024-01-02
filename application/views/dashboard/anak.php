@@ -56,10 +56,10 @@
                                         <!-- btn info -->
                                         <button class="btn btn-sm btn-info btn-circle" data-bs-toggle="modal" data-bs-target="#editModal<?= $key['nik_anak']; ?>">
                                             <i class="fas fa-info"></i>
-                                            <!-- btn hapus -->
-                                            <button class="btn btn-sm btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#hapusModal<?= $key['nik_anak']; ?>">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                        </button>
+                                        <!-- btn hapus -->
+                                        <button class="btn btn-sm btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#hapusModal<?= $key['nik_anak']; ?>">
+                                            <i class="fas fa-trash"></i>
                                         </button>
                                     </center>
                                 </td>

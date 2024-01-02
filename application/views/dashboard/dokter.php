@@ -14,6 +14,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            <?= $this->session->flashdata('pesan'); ?>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -36,7 +37,18 @@
                             <td><?= $id++ ?></td>
                             <td><?= $key['nip'] ?></td>
                             <td><?= $key['nama_dokter'] ?></td>
-                            <td><?= $key['spesialis'] ?></td>
+                            <td><?php if ($key['spesialis'] == 'kandungan') {
+                                    # code...
+                                    echo 'Kandungan';
+                                } else if ($key['spesialis'] == 'anak') {
+                                    # code...
+                                    echo 'Anak';
+                                } else if ($key['spesialis'] == 'ibu') {
+                                    echo 'Ibu';
+                                } else {
+                                    echo '--';
+                                }
+                                ?></td>
                             <td><?= $key['kontak'] ?></td>
                             <td>
                                 <center>
@@ -44,9 +56,10 @@
                                     <button class="btn btn-sm btn-info btn-circle" data-bs-toggle="modal" data-bs-target="#editModal<?= $key['nip']; ?>">
                                         <i class="fas fa-info"></i></button>
                                     <!-- btn delete -->
-                                    <a href="#" class="btn btn-sm btn-danger btn-circle">
+                                    <!-- btn hapus -->
+                                    <button class="btn btn-sm btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#hapusModal<?= $key['nip']; ?>">
                                         <i class="fas fa-trash"></i>
-                                    </a>
+                                    </button>
                                 </center>
                             </td>
                         </tr>
@@ -70,18 +83,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= base_url('dashboard/people/edit_petugas') ?>" method="post">
+                        <form action="<?= base_url('dashboard/people/edit_dokter') ?>" method="post">
 
-                            <input type="text" value="<?= $row['nip'] ?>" hidden name="id">
-
-                            <div class="form-group">
-                                <label for="nip">nip</label>
-                                <input type="text" name="nip" placeholder="Masukkan nip" class="form-control" value="<?= $row['nip'] ?>">
-                            </div>
+                            <input type="text" value="<?= $row['nip'] ?>" hidden name="nip">
 
                             <div class="form-group">
-                                <label for="spesialis">spesialis</label>
-                                <input type="text" name="spesialis" placeholder="Masukkan spesialis" class="form-control" value="<?= $row['spesialis'] ?>">
+                                <label for="spesialis">Spesialis</label>
+                                <select name="spesialis" id="" class="form-control">
+                                    <option class="form-control" value="">-- Spesialis --</option>
+                                    <option value="kandungan" <?= $row['spesialis'] == 'kandungan' ? 'selected' : '' ?>>Kandungan</option>
+                                    <option value="anak" <?= $row['spesialis'] == 'anak' ? 'selected' : '' ?>>Anak</option>
+                                    <option value="ibu" <?= $row['spesialis'] == 'ibu' ? 'selected' : '' ?>>Ibu</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
@@ -109,6 +122,35 @@
     <?php endforeach; ?>
 
     <!-- end Modal edit-->
+
+    <!-- Modal Hapus  -->
+    <?php
+    $id = 1;
+    foreach ($data_dokter as $row) : $id++;
+    ?>
+        <div class="modal fade" id="hapusModal<?= $row['nip']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="nik" value="<?= $row['nip'] ?>">
+                        Anda yakin ingin menghapus data ini?
+                        Tindakan ini tidak dapat dibatalkan, pastikan Anda telah mempertimbangkan dengan cermat sebelum melanjutkan.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger" href="<?= base_url() ?>dashboard/people/hapus_dokter/<?= $row['nip'] ?>">Hapus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <!-- end Modal Hapus -->
+
     <!-- modal tambah -->
 
     <div class="modal fade bd-example-modal-lg" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -121,26 +163,31 @@
 
                 <!-- modal content-->
                 <div class="modal-body">
-                    <?= form_open_multipart('dashboard/people/proses_tambah_petugas'); ?>
+                    <?= form_open_multipart('dashboard/people/tambah_dokter'); ?>
 
                     <div class="form-group">
-                        <label for="nip">nip</label>
-                        <input type="text" name="nip" placeholder="Masukkan nip" class="form-control" value="<?= $row['nip'] ?>">
+                        <label for="nip">NIP</label>
+                        <input type="text" name="nip" placeholder="Masukkan NIP" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="spesialis">spesialis</label>
-                        <input type="text" name="spesialis" placeholder="Masukkan spesialis" class="form-control" value="<?= $row['spesialis'] ?>">
+                        <label for="spesialis">Spesialis</label>
+                        <select name="spesialis" id="" class="form-control">
+                            <option class="form-control" value="">-- Spesialis --</option>
+                            <option value="kandungan">Kandungan</option>
+                            <option value="anak">Anak</option>
+                            <option value="ibu">Ibu</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control" value="<?= $row['nama_dokter'] ?>">
+                        <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="kontak">No. Telp</label>
-                        <input type="text" name="kontak" placeholder="Masukkan No. Telp" class="form-control" value="<?= $row['kontak'] ?>">
+                        <input type="text" name="kontak" placeholder="Masukkan No. Telp" class="form-control">
                     </div>
 
                     <div class="modal-footer">

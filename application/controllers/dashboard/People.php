@@ -136,6 +136,11 @@ class People extends CI_Controller
     public function proses_tambah_anak()
     {
         $this->M_people->proses_tambah_anak();
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Ditambahkan! </div>'
+        );
         redirect('dashboard/people/tb_anak');
     }
 
@@ -159,6 +164,42 @@ class People extends CI_Controller
         Data Berhasil Dihapus! </div>'
         );
         redirect('dashboard/people/tb_anak');
+    }
+    //end anak
+
+    // dokter
+    public function tambah_dokter()
+    {
+        $this->M_people->tambah_dokter();
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Ditambahkan! </div>'
+        );
+        redirect('dashboard/people/tb_dokter');
+    }
+
+    public function edit_dokter()
+    {
+        $this->M_people->edit_dokter();
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Diubah! </div>'
+        );
+        redirect('dashboard/people/tb_dokter');
+    }
+
+    public function hapus_dokter($nip)
+    {
+        $this->db->where('nip', $nip);
+        $this->db->delete('dokter');
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Dihapus! </div>'
+        );
+        redirect('dashboard/people/tb_dokter');
     }
 }
 

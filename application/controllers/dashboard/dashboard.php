@@ -34,6 +34,7 @@ class dashboard extends CI_Controller
         $this->load->view('template/dash_footer.php');
     }
 
+
     public function logout()
     {
         $this->session->sess_destroy();

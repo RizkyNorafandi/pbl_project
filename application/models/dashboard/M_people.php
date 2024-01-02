@@ -181,6 +181,33 @@ class M_people extends CI_Model
         $this->db->where('nik_anak', $nik_anak);
         $this->db->delete('anak');
     }
+    // end anak
+
+    // dokter
+    public function tambah_dokter()
+    {
+        $insert = [
+            "nip" => htmlspecialchars($this->input->post('nip')),
+            "spesialis" => htmlspecialchars($this->input->post('spesialis')),
+            "nama_dokter" => htmlspecialchars($this->input->post('nama')),
+            "kontak" => htmlspecialchars($this->input->post('kontak'))
+        ];
+
+        $this->db->insert('dokter', $insert);
+    }
+
+    public function edit_dokter()
+    {
+        $nip = $this->input->post('nip');
+        $update = [
+            "spesialis" => htmlspecialchars($this->input->post('spesialis')),
+            "nama_dokter" => htmlspecialchars($this->input->post('nama')),
+            "kontak" => htmlspecialchars($this->input->post('kontak'))
+        ];
+
+        $this->db->where('nip', $nip);
+        $this->db->update('dokter', $update);
+    }
 }
 
 /* End of file M_people.php */

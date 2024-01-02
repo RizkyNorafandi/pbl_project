@@ -57,16 +57,21 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href=<?php echo base_url("dashboard") ?>>
-                    <i class="fas fa-fw "></i>
-                    <span>Vaksin</span></a>
-                <a class="nav-link" href=<?php echo base_url("dashboard") ?>>
-                    <i class="fas fa-fw "></i>
-                    <span>Pemeriksaan</span>
-                </a>
-                <a class="nav-link" href=<?php echo base_url("dashboard") ?>>
+                <a class="nav-link" href=<?php echo base_url("dashboard/Riwayat/riwayat") ?>>
                     <i class="fas fa-fw "></i>
                     <span>Riwayat</span>
+                </a>
+                <a class="nav-link" href=<?php echo base_url("dashboard/Riwayat/vaksin") ?>>
+                    <i class="fas fa-fw "></i>
+                    <span>Vaksinasi</span>
+                </a>
+                <a class="nav-link" href=<?php echo base_url("dashboard/Riwayat/h_pemeriksaan") ?>>
+                    <i class="fas fa-fw "></i>
+                    <span>Hasil Pemeriksaan</span>
+                </a>
+                <a class="nav-link" href=<?php echo base_url("dashboard/Riwayat/pemeriksaan") ?>>
+                    <i class="fas fa-fw "></i>
+                    <span>Pemeriksaan</span>
                 </a>
             </li>
 
