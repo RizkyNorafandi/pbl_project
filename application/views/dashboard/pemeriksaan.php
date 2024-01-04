@@ -37,8 +37,8 @@
                             <td><?= $key['id_periksa'] ?></td>
                             <td><?= date('d - m - Y', strtotime($key['tanggal_periksa'])) ?></td>
                             <td><?= $key['jam_mulai'] ?></td>
-                            <td><?= $key['no_ruangan'] ?></td>
-                            <td><?= $key['nip_dokter'] ?></td>
+                            <td><?= $key['no_ruangan'] ?>. <?= $key['nama_ruangan'] ?></td>
+                            <td><?= $key['nama_dokter'] ?></td>
                             <td><?= $key['no_daftar'] ?></td>
                             <td><?= $key['no_antrian'] ?></td>
                             <td>

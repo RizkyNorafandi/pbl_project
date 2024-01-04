@@ -24,6 +24,7 @@
                         <th>lingkar Kepala</th>
                         <th>No Periksa</th>
                         <th>Nik Anak</th>
+                        <th>Nama Anak</th>
                         <th>Catatan</th>
                         <th>info</th>
                     </tr>
@@ -42,6 +43,7 @@
                             <td><?= $key['lingkar_kepala'] ?></td>
                             <td><?= $key['id_periksa'] ?></td>
                             <td><?= $key['nik_anak'] ?></td>
+                            <td><?= $key['nama_anak'] ?></td>
                             <td><?= $key['note'] ?></td>
                             <td>
                                 <center>
