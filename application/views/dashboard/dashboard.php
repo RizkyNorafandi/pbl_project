@@ -19,6 +19,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_ibu; ?></div>
                         </div>
                         <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -36,6 +37,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_kader; ?></div>
                         </div>
                         <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -53,6 +55,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_anak; ?></div>
                         </div>
                         <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -69,6 +72,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_anak; ?></div>
                         </div>
                         <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -97,6 +101,3 @@
 
 </div>
 <!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->

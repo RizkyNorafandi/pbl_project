@@ -75,7 +75,7 @@
 
 
         <div class="modal fade" id="editModal<?= $row['id_petugas']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
@@ -85,41 +85,47 @@
                         <form action="<?= base_url('dashboard/people/edit_petugas') ?>" method="post">
 
                             <input type="text" value="<?= $row['id_petugas'] ?>" hidden name="id">
+                            <div class="row">
 
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" name="username" placeholder="Masukkan Username" class="form-control" value="<?= $row['username'] ?>">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" placeholder="Masukkan Username" class="form-control" value="<?= $row['username'] ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="nama">Nama</label>
+                                        <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control" value="<?= $row['nama_petugas'] ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="alamat">Alamat</label>
+                                        <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control" value="<?= $row['alamat'] ?>">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="no_telp">No. Telp</label>
+                                        <input type="text" name="no_telp" placeholder="Masukkan No. Telp" class="form-control" value="<?= $row['no_telp'] ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="text" name="password" placeholder="Masukkan password" class="form-control" value="<?= $row['password'] ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="jenis_kelamin">Jenis</label>
+                                        <select name="jenis_kelamin" id="" class="form-control">
+                                            <option class="form-control" value="">-- Jenis Kelamin --</option>
+                                            <option value="L" <?= $row['jenis_kelamin'] == 'L' ? 'selected' : '' ?>>Laki-Laki</option>
+                                            <option value="P" <?= $row['jenis_kelamin'] == 'P' ? 'selected' : '' ?>>Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                             </div>
-
-                            <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control" value="<?= $row['nama_petugas'] ?>">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="alamat">Alamat</label>
-                                <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control" value="<?= $row['alamat'] ?>">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="no_telp">No. Telp</label>
-                                <input type="text" name="no_telp" placeholder="Masukkan No. Telp" class="form-control" value="<?= $row['no_telp'] ?>">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="text" name="password" placeholder="Masukkan password" class="form-control" value="<?= $row['password'] ?>">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="jenis_kelamin">Jenis</label>
-                                <select name="jenis_kelamin" id="" class="form-control">
-                                    <option class="form-control" value="">-- Jenis Kelamin --</option>
-                                    <option value="L" <?= $row['jenis_kelamin'] == 'L' ? 'selected' : '' ?>>Laki-Laki</option>
-                                    <option value="P" <?= $row['jenis_kelamin'] == 'P' ? 'selected' : '' ?>>Perempuan</option>
-                                </select>
-                            </div>
-
                             <div class="modal-footer">
                                 <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
@@ -141,7 +147,7 @@
     $id = 1;
     foreach ($data_petugas as $row) : $id++;
     ?>
-        <div class="modal fade" id="hapusModal<?= $row['id_petugas']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="hapusModal<?= $row['id_petugas']; ?>" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -178,43 +184,48 @@
             <!-- modal content-->
             <div class="modal-body">
                 <?= form_open_multipart('dashboard/people/proses_tambah_petugas'); ?>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" placeholder="Masukkan Username" class="form-control">
+                        </div>
 
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" placeholder="Masukkan Username" class="form-control">
-                </div>
+                        <div class="form-group">
+                            <label for="nama">Nama</label>
+                            <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
+                        </div>
 
-                <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
-                </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control">
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control">
-                </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="no_telp">No.telp</label>
+                            <input type="text" name="no_telp" placeholder="Masukkan No.Telp" class="form-control">
+                        </div>
 
-                <div class="form-group">
-                    <label for="no_telp">No.telp</label>
-                    <input type="text" name="no_telp" placeholder="Masukkan No.Telp" class="form-control">
-                </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text" name="password" placeholder="Masukkan password" class="form-control">
+                        </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" name="password" placeholder="Masukkan password" class="form-control">
-                </div>
+                        <div class="form-group">
+                            <label for="jenis_kelamin">Jenis Kelamin</label>
+                            <select name="jenis_kelamin" id="" class="form-control">
+                                <option class="form-control" value="">--jenis_kelamin--</option>
+                                <option value="L">Laki-Laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                    <select name="jenis_kelamin" id="" class="form-control">
-                        <option class="form-control" value="">--jenis_kelamin--</option>
-                        <option value="L">Laki-Laki</option>
-                        <option value="P">Perempuan</option>
-                    </select>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
                 </div>
                 <?= form_close(); ?>
 

@@ -16,6 +16,9 @@ class c_auth extends CI_Controller
 
     public function index()
     {
+        if ($this->session->userdata('nik')) {
+            redirect("homepage");
+        }
 
         $this->form_validation->set_rules(
             'user',
@@ -59,31 +62,34 @@ class c_auth extends CI_Controller
                         'nik_ibu' => $ibu->nik_ibu,
                         'nama' => $ibu->nama_ibu,
                     );
-
                     $this->session->set_userdata($dataIbu);
-
                     redirect('homepage');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                                NIK atau Password salah</div>');
+                    redirect('c_auth/index');
                 }
             }
-        } else {
-            $cekPetugas = $this->sess->cekUser('petugas', 'username', $username);
+        }
 
-            if ($cekPetugas) {
-                foreach ($cekPetugas as $row) {
-                    if (password_verify($password, $row->password)) {
-                        $dataPetugas = array(
-                            'id_petugas' => $row->id_petugas,
-                            'username' => $row->username,
-                            'nama' => $row->nama_petugas
-                        );
-                        $this->session->set_userdata($dataPetugas);
-                        redirect('dashboard/dashboard');
-                    }
+        $cekPetugas = $this->sess->cekUser('petugas', 'username', $username);
+
+        if ($cekPetugas) {
+            foreach ($cekPetugas as $row) {
+                if (password_verify($password, $row->password)) {
+                    $dataPetugas = array(
+                        'id_petugas' => $row->id_petugas,
+                        'username' => $row->username,
+                        'nama' => $row->nama_petugas,
+                        'image' => $row->photo
+                    );
+                    $this->session->set_userdata($dataPetugas);
+                    redirect('dashboard/dashboard');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                                Username atau Password salah</div>');
+                    redirect('c_auth/index');
                 }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                        Username atau Password salah</div>');
-                redirect('c_auth');
             }
         }
     }

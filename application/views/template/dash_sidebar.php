@@ -28,8 +28,6 @@
                     <span>Dashboard</span></a>
             </li>
 
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
@@ -40,16 +38,44 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-users"></i>
                     <span>User</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Daftar:</h6>
-                        <a class="collapse-item" href="<?= base_url('dashboard/People/tb_ibu') ?>">Ibu</a>
                         <a class="collapse-item" href="<?= base_url('dashboard/People/tb_kader') ?>">Petugas</a>
-                        <a class="collapse-item" href="<?= base_url('dashboard/People/tb_anak') ?>">Anak</a>
                         <a class="collapse-item" href="<?= base_url('dashboard/People/tb_dokter') ?>">Dokter</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href=<?php echo base_url("dashboard/people/profile") ?>>
+                    <i class="fas fa-user "></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Pasien
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Pasien</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Daftar:</h6>
+                        <a class="collapse-item" href="<?= base_url('dashboard/People/tb_ibu') ?>">Ibu</a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/People/tb_anak') ?>">Anak</a>
                     </div>
                 </div>
             </li>

@@ -20,8 +20,8 @@
                     <tr>
                         <th>No.</th>
                         <th>NIP</th>
-                        <th>Spesialis</th>
                         <th>Nama</th>
+                        <th>Spesialis</th>
                         <th>Kontak</th>
                         <th>info</th>
                     </tr>
@@ -79,7 +79,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit <?= $title ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -89,7 +89,7 @@
 
                             <div class="form-group">
                                 <label for="spesialis">Spesialis</label>
-                                <select name="spesialis" id="" class="form-control">
+                                <select name="spesialis" id="" class="form-control" required>
                                     <option class="form-control" value="">-- Spesialis --</option>
                                     <option value="kandungan" <?= $row['spesialis'] == 'kandungan' ? 'selected' : '' ?>>Kandungan</option>
                                     <option value="anak" <?= $row['spesialis'] == 'anak' ? 'selected' : '' ?>>Anak</option>
@@ -99,12 +99,12 @@
 
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control" value="<?= $row['nama_dokter'] ?>">
+                                <input type="text" name="nama" required placeholder="Masukkan Nama" class="form-control" value="<?= $row['nama_dokter'] ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="kontak">No. Telp</label>
-                                <input type="text" name="kontak" placeholder="Masukkan No. Telp" class="form-control" value="<?= $row['kontak'] ?>">
+                                <input type="text" name="kontak" required placeholder="Masukkan No. Telp" class="form-control" value="<?= $row['kontak'] ?>">
                             </div>
 
                             <div class="modal-footer">
@@ -167,12 +167,12 @@
 
                     <div class="form-group">
                         <label for="nip">NIP</label>
-                        <input type="text" name="nip" placeholder="Masukkan NIP" class="form-control">
+                        <input type="text" name="nip" placeholder="Masukkan NIP" required class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="spesialis">Spesialis</label>
-                        <select name="spesialis" id="" class="form-control">
+                        <select name="spesialis" id="" required class="form-control">
                             <option class="form-control" value="">-- Spesialis --</option>
                             <option value="kandungan">Kandungan</option>
                             <option value="anak">Anak</option>
@@ -182,7 +182,7 @@
 
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
+                        <input type="text" name="nama" required placeholder="Masukkan Nama" class="form-control">
                     </div>
 
                     <div class="form-group">

@@ -18,19 +18,18 @@ class dashboard extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Dashboard';
+        $title['title'] = 'Dashboard';
 
-        $total_ibu['total_ibu'] = $this->M_people->count_ibu();
-        $total_kader['total_kader'] = $this->M_people->count_kader();
-        $total_anak['total_anak'] = $this->M_people->count_anak();
+        $array = [
+            'total_ibu' => $this->M_people->count_ibu(),
+            'total_kader' => $this->M_people->count_kader(),
+            'total_anak' => $this->M_people->count_anak()
+        ];
 
-        $this->load->view('template/dash_header.php', $data);
+        $this->load->view('template/dash_header.php', $title);
         $this->load->view('template/dash_sidebar.php');
         $this->load->view('template/dash_topbar.php');
-        $this->load->view(
-            'dashboard/dashboard',
-            array_merge($total_ibu, $total_kader, $total_anak)
-        );
+        $this->load->view('dashboard/dashboard', $array);
         $this->load->view('template/dash_footer.php');
     }
 

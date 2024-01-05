@@ -54,7 +54,7 @@ class Riwayat extends CI_Controller
     {
 
         $result['periksa'] = $this->m_riwayat->pemeriksaan();
-        $title['title'] = 'Hasil Pemeriksaan Pasien';
+        $title['title'] = 'Pemeriksaan Pasien';
         $this->load->view('template/dash_header.php', $title);
         $this->load->view('template/dash_sidebar.php');
         $this->load->view('template/dash_topbar.php');

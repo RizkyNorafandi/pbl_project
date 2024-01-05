@@ -60,6 +60,19 @@ class People extends CI_Controller
         $this->load->view('template/dash_footer.php');
     }
 
+    public function profile()
+    {
+        $title['title'] =  'Data kader';
+        $data['user'] = $this->db->get_where('petugas', ['username' =>
+        $this->session->userdata('username')])->row_array();
+
+        $this->load->view('template/dash_header.php', $title);
+        $this->load->view('template/dash_sidebar.php');
+        $this->load->view('template/dash_topbar.php');
+        $this->load->view('dashboard/profile', $data);
+        $this->load->view('template/dash_footer.php');
+    }
+
     // CRUD
 
     //ibu

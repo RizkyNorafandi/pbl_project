@@ -79,7 +79,7 @@
 
         <!-- Modal edit-->
         <div class="modal fade" id="editModal<?= $anak['nik_anak']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Edit Data</h5>
@@ -87,47 +87,51 @@
                     </div>
                     <div class="modal-body">
                         <form action="<?= base_url('dashboard/people/edit_anak') ?>" method="post">
+                            <div class="row">
+                                <input type="hidden" name="nik" value="<?= $anak['nik_anak'] ?>">
 
-                            <input type="hidden" name="nik" value="<?= $anak['nik_anak'] ?>">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nama">Nama</label>
+                                        <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control" value="<?= $anak['nama_anak'] ?>">
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control" value="<?= $anak['nama_anak'] ?>">
+                                    <div class="form-group">
+                                        <label for="tgl_lahir">Tanggal Lahir</label>
+                                        <input type="date" name="tgl_lahir" placeholder="Masukkan Tanggal Lahir" class="form-control" value="<?= $anak['tgl_lahir'] ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tb_lahir">Tinggi Badan</label>
+                                        <input type="text" name="tb_lahir" placeholder="Tinggi Badan" class="form-control" value="<?= $anak['tb_lahir'] ?>">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bb_lahir">Berat Badan</label>
+                                        <input type="text" name="bb_lahir" placeholder="Berat Badan" class="form-control" value="<?= $anak['bb_lahir'] ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="jenis_kelamin">Jenis</label>
+                                        <select name="jenis_kelamin" id="" class="form-control">
+                                            <option class="form-control" value="">-- jenis kelamin --</option>
+                                            <option value="L" <?= $anak['jenis_kelamin'] == "L" ? "selected" : null ?>>Laki-Laki</option>
+                                            <option value="P" <?= $anak['jenis_kelamin'] == 'P' ? 'selected' : null ?>>Perempuan</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="lingkar_kepala">Lingkar Kepala</label>
+                                        <input type="text" name="lingkar_kepala" placeholder="Lingkar Kepala" class="form-control" value="<?= $anak['lingkar_kepala'] ?>">
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
                             </div>
-
-                            <div class="form-group">
-                                <label for="tgl_lahir">Tanggal Lahir</label>
-                                <input type="date" name="tgl_lahir" placeholder="Masukkan Tanggal Lahir" class="form-control" value="<?= $anak['tgl_lahir'] ?>">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="tb_lahir">Tinggi Badan</label>
-                                <input type="text" name="tb_lahir" placeholder="Tinggi Badan" class="form-control" value="<?= $anak['tb_lahir'] ?>">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="bb_lahir">Berat Badan</label>
-                                <input type="text" name="bb_lahir" placeholder="Berat Badan" class="form-control" value="<?= $anak['bb_lahir'] ?>">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="jenis_kelamin">Jenis</label>
-                                <select name="jenis_kelamin" id="" class="form-control">
-                                    <option class="form-control" value="">-- jenis kelamin --</option>
-                                    <option value="L" <?= $anak['jenis_kelamin'] == "L" ? "selected" : null ?>>Laki-Laki</option>
-                                    <option value="P" <?= $anak['jenis_kelamin'] == 'P' ? 'selected' : null ?>>Perempuan</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="lingkar_kepala">Lingkar Kepala</label>
-                                <input type="text" name="lingkar_kepala" placeholder="Lingkar Kepala" class="form-control" value="<?= $anak['lingkar_kepala'] ?>">
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-
                         </form>
                     </div>
                 </div>
@@ -143,7 +147,7 @@
     $id = 1;
     foreach ($data_anak as $anak) : $id++;
     ?>
-        <div class="modal fade" id="hapusModal<?= $anak['nik_anak']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="hapusModal<?= $anak['nik_anak']; ?>" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -178,49 +182,56 @@
                 <!-- modal content-->
                 <div class="modal-body">
                     <?= form_open_multipart('dashboard/people/proses_tambah_anak'); ?>
+                    <div class="row">
 
-                    <div class="form-group">
-                        <label for="nik">NIK</label>
-                        <input type="text" name="nik" placeholder="Masukkan NIK" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tgl_lahir">Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir" placeholder="Masukkan Tanggal Lahir" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tb_lahir">Tinggi Badan</label>
-                        <input type="text" name="tb_lahir" placeholder="Tinggi Badan" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="bb_lahir">Berat Badan</label>
-                        <input type="text" name="bb_lahir" placeholder="Berat Badan" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <select name="jenis_kelamin" id="" class="form-control">
-                            <option class="form-control" value="">-- jenis_kelamin --</option>
-                            <option value="L">Laki-Laki</option>
-                            <option value="P">Perempuan</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lingkar_kepala">Lingkar Kepala</label>
-                        <input type="text" name="lingkar_kepala" placeholder="Lingkar Kepala" class="form-control">
-                    </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nik">NIK</label>
+                                <input type="text" name="nik" placeholder="Masukkan NIK" class="form-control">
+                            </div>
 
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tgl_lahir">Tanggal Lahir</label>
+                                <input type="date" name="tgl_lahir" placeholder="Masukkan Tanggal Lahir" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tb_lahir">Tinggi Badan</label>
+                                <input type="text" name="tb_lahir" placeholder="Tinggi Badan" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="bb_lahir">Berat Badan</label>
+                                <input type="text" name="bb_lahir" placeholder="Berat Badan" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jenis_kelamin">Jenis Kelamin</label>
+                                <select name="jenis_kelamin" id="" class="form-control">
+                                    <option class="form-control" value="">-- jenis_kelamin --</option>
+                                    <option value="L">Laki-Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lingkar_kepala">Lingkar Kepala</label>
+                                <input type="text" name="lingkar_kepala" placeholder="Lingkar Kepala" class="form-control">
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
                     </div>
                     <?= form_close(); ?>
                 </div>
