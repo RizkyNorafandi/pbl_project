@@ -122,21 +122,33 @@ class M_people extends CI_Model
 
     public function edit_petugas()
     {
+        $pass = $this->input->post('password');
 
-        $update = [
-            "nama_petugas" => htmlspecialchars($this->input->post('nama')),
-            "alamat" => htmlspecialchars($this->input->post('alamat')),
-            "no_telp" => htmlspecialchars($this->input->post('no_telp')),
-            "jenis_kelamin" => htmlspecialchars($this->input->post('jenis_kelamin')),
-            "username" => htmlspecialchars($this->input->post('username')),
-            'password' => password_hash(
-                $this->input->post('password'),
-                PASSWORD_DEFAULT
-            ),
-        ];
-
-        $this->db->where('id_petugas', $this->input->post('id'));
-        $this->db->update('petugas', $update);
+        if ('password' != $pass) {
+            $update = [
+                "nama_petugas" => htmlspecialchars($this->input->post('nama')),
+                "alamat" => htmlspecialchars($this->input->post('alamat')),
+                "no_telp" => htmlspecialchars($this->input->post('no_telp')),
+                "jenis_kelamin" => htmlspecialchars($this->input->post('jenis_kelamin')),
+                "username" => htmlspecialchars($this->input->post('username')),
+            ];
+            $this->db->where('id_petugas', $this->input->post('id'));
+            $this->db->update('petugas', $update);
+        } else {
+            $update = [
+                "nama_petugas" => htmlspecialchars($this->input->post('nama')),
+                "alamat" => htmlspecialchars($this->input->post('alamat')),
+                "no_telp" => htmlspecialchars($this->input->post('no_telp')),
+                "jenis_kelamin" => htmlspecialchars($this->input->post('jenis_kelamin')),
+                "username" => htmlspecialchars($this->input->post('username')),
+                'password' => password_hash(
+                    $this->input->post('password'),
+                    PASSWORD_DEFAULT
+                ),
+            ];
+            $this->db->where('id_petugas', $this->input->post('id'));
+            $this->db->update('petugas', $update);
+        }
     }
 
     public function hapus_petugas($id_petugas)

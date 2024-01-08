@@ -156,7 +156,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" name="id" value="<?= $ibu['id_petugas'] ?>">
+                        <input type="hidden" name="id" value="<?= $row['id_petugas'] ?>">
                         Anda yakin ingin menghapus data ini?
                         Tindakan ini tidak dapat dibatalkan, pastikan Anda telah mempertimbangkan dengan cermat sebelum melanjutkan.
                     </div>
@@ -167,74 +167,73 @@
                 </div>
             </div>
         </div>
-</div>
-<?php endforeach; ?>
-<!-- end Modal Hapus -->
+    <?php endforeach; ?>
+    <!-- end Modal Hapus -->
 
-<!-- modal tambah -->
+    <!-- modal tambah -->
 
-<div class="modal fade bd-example-modal-lg" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Petugas</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <!-- modal content-->
-            <div class="modal-body">
-                <?= form_open_multipart('dashboard/people/proses_tambah_petugas'); ?>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" name="username" placeholder="Masukkan Username" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="no_telp">No.telp</label>
-                            <input type="text" name="no_telp" placeholder="Masukkan No.Telp" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="text" name="password" placeholder="Masukkan password" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="jenis_kelamin">Jenis Kelamin</label>
-                            <select name="jenis_kelamin" id="" class="form-control">
-                                <option class="form-control" value="">--jenis_kelamin--</option>
-                                <option value="L">Laki-Laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
+    <div class="modal fade bd-example-modal-lg" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Petugas</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <?= form_close(); ?>
+
+                <!-- modal content-->
+                <div class="modal-body">
+                    <?= form_open_multipart('dashboard/people/proses_tambah_petugas'); ?>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" placeholder="Masukkan Username" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="alamat">Alamat</label>
+                                <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="no_telp">No.telp</label>
+                                <input type="text" name="no_telp" placeholder="Masukkan No.Telp" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" name="password" placeholder="Masukkan password" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jenis_kelamin">Jenis Kelamin</label>
+                                <select name="jenis_kelamin" id="" class="form-control">
+                                    <option class="form-control" value="">--jenis_kelamin--</option>
+                                    <option value="L">Laki-Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </div>
+                    <?= form_close(); ?>
+
+                </div>
+                <!-- end modal content-->
 
             </div>
-            <!-- end modal content-->
-
         </div>
     </div>
-</div>
 
 
 </div>

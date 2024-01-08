@@ -110,8 +110,6 @@
 
     <?php endforeach; ?>
 
-
-
     <!-- end Modal edit-->
 
     <!-- Modal Hapus  -->
@@ -163,22 +161,22 @@
 
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control">
+                        <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="tgl_lahir">Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir" placeholder="Masukkan Tanggal Lahir" class="form-control">
+                        <input type="date" name="tgl_lahir" placeholder="Masukkan Tanggal Lahir" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control">
+                        <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="text" name="password" placeholder="Masukkan Password" class="form-control">
+                        <input type="text" name="password" placeholder="Masukkan Password" class="form-control" required>
                     </div>
 
 

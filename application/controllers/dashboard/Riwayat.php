@@ -62,15 +62,63 @@ class Riwayat extends CI_Controller
         $this->load->view('template/dash_footer.php');
     }
 
+    //hasil Pemeriksaan
     public function tambah_hasil()
     {
         $insert = [
             "id_periksa" => $this->input->post('id_periksa'),
             "keterangan" => $this->input->post('keterangan'),
-            "resep" => $this->input->post('keterangan')
+            "resep" => $this->input->post('keterangan'),
+
         ];
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Ditambahkan! </div>'
+        );
+
         $this->db->insert('hasil_pemeriksaan', $insert);
-        redirect('h_pemeriksaan');
+        redirect('dashboard/riwayat/h_pemeriksaan');
+    }
+
+    public function edit_hasil()
+    {
+        $id_periksa = $this->input->post('id_periksa');
+        $update = [
+            "keterangan" => $this->input->post('keterangan'),
+            "resep" => $this->input->post('keterangan'),
+
+        ];
+
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">
+        Data Berhasil Diedit! </div>'
+        );
+
+        $this->db->where('id_periksa', $id_periksa);
+        $this->db->update('hasil_pemeriksaan', $update);
+        redirect('dashboard/riwayat/h_pemeriksaan');
+    }
+
+    public function hapus_hasil()
+    {
+        $id_periksa = $this->input->post('id_periksa');
+        $this->db->where('id_periksa', $id_periksa);
+        if ($this->db->delete('hasil_pemeriksaan') == false) {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-success" role="alert">
+        Data Berhasil Ditambahkan! </div>'
+            );
+        } else {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-success" role="alert">
+        Data Berhasil Ditambahkan! </div>'
+            );
+        }
+        redirect('dashboard/riwayat/h_pemeriksaan');
     }
 }
 

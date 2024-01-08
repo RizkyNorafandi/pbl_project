@@ -7,9 +7,9 @@ class m_riwayat extends CI_Model
     public function h_pemeriksaan()
     {
         $this->db->select('*');
-        $this->db->from('hasil_pemeriksaan');
-        $this->db->join('pemeriksaan', 'pemeriksaan.id_periksa = hasil_pemeriksaan.id_periksa', 'left');
-        $this->db->join('dokter', 'dokter.nip = pemeriksaan.nip_dokter', 'left');
+        $this->db->from('hasil_pemeriksaan a');
+        $this->db->join('pemeriksaan b', 'b.id_periksa = a.id_periksa', 'left');
+        $this->db->join('dokter c', 'c.nip = b.nip_dokter', 'left');
         return $this->db->get()->result_array();
     }
 
